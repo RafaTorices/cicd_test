@@ -94,7 +94,7 @@ jobs:
             mkdir docs-covtests-reports
             # Run test coverage with pytest
             coverage run -m pytest tests/test_calculator.py
-            python3 -m pytest --cov=src --cov-report=xml
+            python3 -m pytest --cov=src --cov-report=xml:docs-covtests-reports/coverage.xml
             coverage html -d ./docs-covtests-reports
       # Store test coverage results
       - store_test_results:
