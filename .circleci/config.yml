@@ -26,6 +26,9 @@ defaults: &defaults
   # Executor that will be used
   executor: docker-builder
 
+orbs:
+  sonarcloud: sonarsource/sonarcloud@2.0.0
+
 # Jobs that will be executed
 jobs:
   # Job name
@@ -112,6 +115,7 @@ jobs:
       - store_artifacts:
           path: docs-tests-reports
           destination: docs-tests-reports
+      - sonarcloud/scan
   # Job name
   app-docs:
     # Default configuration
@@ -183,8 +187,10 @@ workflows:
     # Jobs that will be executed
     jobs:
       # Job name
-      - app-build
+      - app-build:
+          context: SonarCloud
       - app-tests:
+          context: SonarCloud
           requires:
             - app-build
           filters:
@@ -192,6 +198,7 @@ workflows:
               ignore:
                 - main
       - app-docs:
+          context: SonarCloud
           requires:
             - app-build
           filters:
