@@ -93,6 +93,7 @@ jobs:
             # Run test coverage with pytest
             coverage run -m pytest tests/test_calculator.py
             python3 -m pytest --cov=src
+            python3 -m pytest --cov=src --cov-report=./docs-tests/xml
       # Run test with pytest
       - run:
           name: Run Tests Pytest
@@ -115,7 +116,7 @@ jobs:
       - store_artifacts:
           path: docs-tests-reports
           destination: docs-tests-reports
-      - sonarcloud/scan
+      # - sonarcloud/scan
   # Job name
   app-docs:
     # Default configuration
@@ -217,10 +218,10 @@ workflows:
             branches:
               ignore:
                 - main
-      - app-deploy:
-          requires:
-            - app-build
-          filters:
-            branches:
-              only:
-                - main
+      # - app-deploy:
+      #     requires:
+      #       - app-build
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
