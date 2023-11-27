@@ -193,18 +193,18 @@ workflows:
           context: SonarCloud
           requires:
             - app-build
-          filters:
-            branches:
-              ignore:
-                - main
+          # filters:
+          #   branches:
+          #     ignore:
+          #       - main
       - app-docs:
           context: SonarCloud
           requires:
             - app-build
-          filters:
-            branches:
-              ignore:
-                - main
+          # filters:
+          #   branches:
+          #     ignore:
+          #       - main
       - app-release:
           requires:
             - app-build
