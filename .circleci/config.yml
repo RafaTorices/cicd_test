@@ -98,7 +98,7 @@ jobs:
             coverage html -d ./docs-covtests-reports
       # Store test coverage results
       - store_test_results:
-          path: docs-covtests-reports/coverage.xml
+          path: docs-covtests-reports
       # Generate artifacts of test coverage
       - store_artifacts:
           path: docs-covtests-reports
