@@ -98,7 +98,7 @@ jobs:
             coverage html -d ./docs-covtests-reports
       # Store test coverage results
       - store_test_results:
-          path: coverage.xml
+          path: docs-covtests-reports/coverage.xml
       # Generate artifacts of test coverage
       - store_artifacts:
           path: docs-covtests-reports
@@ -115,13 +115,11 @@ jobs:
             mkdir docs-pytests-reports
             # Generate report html of test results
             python3 -m pytest --html=./docs-pytests-reports/report.html
-            # Create directorys for test results
-            mkdir docs-pytests-xml
             # Generate report xml of test results
-            python3 -m pytest --junitxml=./docs-pytests-xml/report.xml
+            python3 -m pytest --junitxml=./docs-pytests-reports/report.xml
       # Generate artifacts of test results
       - store_test_results:
-          path: docs-pytests-xml/report.xml
+          path: docs-pytests-reports/report.xml
       - store_artifacts:
           path: docs-pytests-reports
           destination: docs-pytests-reports
