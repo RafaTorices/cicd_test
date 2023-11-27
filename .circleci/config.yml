@@ -90,10 +90,12 @@ jobs:
           command: |
             # Source env
             source env/bin/activate
+            # Create directorys for test results
+            mkdir docs-covtests-reports
             # Run test coverage with pytest
             coverage run -m pytest tests/test_calculator.py
-            python3 -m pytest --cov=src
             python3 -m pytest --cov=src --cov-report=xml
+            coverage html -d ./docs-covtests-reports
       # Run test with pytest
       - run:
           name: Run Tests Pytest
@@ -103,13 +105,13 @@ jobs:
             # Run test with pytest
             python3 -m pytest
             # Create directorys for test results
-            mkdir docs-test-reports
+            mkdir docs-pytests-reports
             # Generate report html of test results
-            python3 -m pytest --html=./docs-tests-reports/report.html
+            python3 -m pytest --html=./docs-pytests-reports/report.html
             # Create directorys for test results
-            mkdir docs-test
+            mkdir docs-pytests-xml
             # Generate report xml of test results
-            python3 -m pytest --junitxml=./docs-tests/report.xml
+            python3 -m pytest --junitxml=./docs-pytests-xml/report.xml
       # Generate artifacts of test results
       - store_test_results:
           path: docs-tests/report.xml
