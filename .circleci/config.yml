@@ -93,7 +93,7 @@ jobs:
             # Run test coverage with pytest
             coverage run -m pytest tests/test_calculator.py
             python3 -m pytest --cov=src
-            python3 -m pytest --cov=src --cov-report=./docs-tests/xml
+            python3 -m pytest --cov=src --cov-report=xml
       # Run test with pytest
       - run:
           name: Run Tests Pytest
