@@ -96,9 +96,6 @@ jobs:
             coverage run -m pytest tests/test_calculator.py
             python3 -m pytest --cov=src --cov-report=xml:docs-covtests-reports/coverage.xml
             coverage html -d ./docs-covtests-reports
-      # Generate xml of test coverage
-      - store_test_results:
-          path: docs-covtests-reports/coverage.xml
       # Generate artifacts of test coverage
       - store_artifacts:
           path: docs-covtests-reports
