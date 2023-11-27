@@ -120,7 +120,7 @@ jobs:
       - store_artifacts:
           path: docs-pytests-reports
           destination: docs-pytests-reports
-      # - sonarcloud/scan
+      - sonarcloud/scan
   # Job name
   app-docs:
     # Default configuration
