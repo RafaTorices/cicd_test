@@ -96,6 +96,13 @@ jobs:
             coverage run -m pytest tests/test_calculator.py
             python3 -m pytest --cov=src --cov-report=xml
             coverage html -d ./docs-covtests-reports
+      # Store test coverage results
+      - store_test_results:
+          path: coverage.xml
+      # Generate artifacts of test coverage
+      - store_artifacts:
+          path: docs-covtests-reports
+          destination: docs-covtests-reports
       # Run test with pytest
       - run:
           name: Run Tests Pytest
@@ -114,10 +121,10 @@ jobs:
             python3 -m pytest --junitxml=./docs-pytests-xml/report.xml
       # Generate artifacts of test results
       - store_test_results:
-          path: docs-tests/report.xml
+          path: docs-pytests-xml/report.xml
       - store_artifacts:
-          path: docs-tests-reports
-          destination: docs-tests-reports
+          path: docs-pytests-reports
+          destination: docs-pytests-reports
       # - sonarcloud/scan
   # Job name
   app-docs:
